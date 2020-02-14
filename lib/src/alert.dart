@@ -73,11 +73,14 @@ class Alert {
   Widget _buildDialog() {
     return Center(
       child: ConstrainedBox(
-        constraints: style.constraints ?? BoxConstraints.expand(width: double.infinity, height: double.infinity),
+        constraints: style.constraints ??
+            BoxConstraints.expand(
+                width: double.infinity, height: double.infinity),
         child: Center(
           child: SingleChildScrollView(
             child: AlertDialog(
-              backgroundColor: style.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
+              backgroundColor: style.backgroundColor ??
+                  Theme.of(context).dialogBackgroundColor,
               shape: style.alertBorder ?? _defaultShape(),
               titlePadding: EdgeInsets.all(0.0),
               title: Container(
@@ -147,26 +150,20 @@ class Alert {
             padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
             child: Container(
               alignment: FractionalOffset.topRight,
-              child: Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      '$kImagePath/close.png',
-                      package: 'rflutter_alert',
-                    ),
+              child: FloatingActionButton(
+                child: Image(
+                  image: AssetImage(
+                    '$kImagePath/close.png',
+                    package: 'rflutter_alert',
                   ),
+                  fit: BoxFit.fill,
                 ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      closeFunction();
-                    },
-                  ),
-                ),
+                backgroundColor: Colors.white,
+                elevation: 0,
+                onPressed: () {
+                  Navigator.pop(context);
+                  closeFunction();
+                },
               ),
             ),
           )
